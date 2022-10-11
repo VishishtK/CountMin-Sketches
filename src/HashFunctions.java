@@ -29,4 +29,12 @@ public class HashFunctions {
     public int Hash(int k, int functionNumber){
         return FNVHash(String.valueOf(k ^ hashFunctionInts[functionNumber]));
     }
+
+    public int Hash(String k, int functionNumber){
+        int sumOfChars = 0;
+        for(int i=0;i<k.length();i++){
+            sumOfChars += k.charAt(i);
+        }
+        return Hash(sumOfChars,functionNumber);
+    }
 }

@@ -32,5 +32,9 @@ public class App {
         int n = 10000;
         int k = 3;
         int w = 3000;
+
+        CountMin countMin = new CountMin(k, w);
+        countMin.ConsumeFlows(flows);
+        System.out.println(countMin.AvgError(flows));
     }
 }
