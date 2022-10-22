@@ -29,13 +29,18 @@ public class App {
         Flow[] flows;
         flows = readFile();
 
-        int n = 10000;
         int k = 3;
         int w = 3000;
 
         CountMin countMin = new CountMin(k, w);
         countMin.ConsumeFlows(flows);
-        System.out.println(countMin.AvgError(flows));
-        // countMin.PrintCounterArray(0);
+        System.out.println("Avg Error in countMin: " + countMin.AvgError(flows));
+
+        ActiveCounter activeCounter = new ActiveCounter();
+        for(int i=0;i<1000000;i++){
+          activeCounter.increment();
+          // System.out.println("Iter: "+ i + "Count: "+activeCounter.printCount());
+        }
+        System.out.println("Active Counter Val: " + activeCounter.printCount());
     }
 }
