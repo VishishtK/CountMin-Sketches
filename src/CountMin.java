@@ -21,4 +21,8 @@ public class CountMin extends Counter{
         return count;
     }
 
+    public void Output(Flow[] flows){
+        super.Output(flows, "CountMin.txt");
+    }
+
 }

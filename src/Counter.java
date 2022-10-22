@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Arrays;
+
 public abstract class Counter{
 
     int numberOfCounterArrays;
@@ -19,7 +23,8 @@ public abstract class Counter{
     abstract int query(String flowId);
 
     public int Error(Flow flow){
-        return Math.abs(query(flow.flowId)-flow.numberOfPackets);
+        flow.estimatedNumberOfPackets = query(flow.flowId);
+        return Math.abs(flow.estimatedNumberOfPackets-flow.numberOfPackets);
     }
 
     public int AvgError(Flow[] flows){
@@ -39,6 +44,27 @@ public abstract class Counter{
     public void PrintCounterArray(int Counter){
         for(int i=0;i<bitmaps[Counter].length;i++){
             System.out.print(bitmaps[Counter][i]+" ");
+        }
+    }
+
+    public String PrintTop100(Flow[] flows){
+        Arrays.sort(flows,(a,b)->b.estimatedNumberOfPackets-a.estimatedNumberOfPackets);
+        String top100="";
+        for(int i=0;i<100;i++){
+            top100+="Flow: " + flows[i].flowId + " Size: " + flows[i].numberOfPackets + " Estimated Size: " + flows[i].estimatedNumberOfPackets + "\n";
+        }
+        return top100;
+    }
+
+    public void Output(Flow[] flows, String outputFileName){
+        String output = "Average Error: " + AvgError(flows) + "\n";
+        output += PrintTop100(flows);
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
+            writer.write(output);
+            writer.close();
+        }catch(Exception e){
+            System.out.println(e.toString());
         }
     }
     

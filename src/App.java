@@ -34,17 +34,17 @@ public class App {
 
         CountMin countMin = new CountMin(k, w);
         countMin.ConsumeFlows(flows);
-        System.out.println("Avg Error in countMin: " + countMin.AvgError(flows));
+        countMin.Output(flows);
 
         CounterSketch counterSketch = new CounterSketch(k, w);
         counterSketch.ConsumeFlows(flows);
-        System.out.println("Avg Error in counterSketch: " + counterSketch.AvgError(flows));
+        counterSketch.Output(flows);
 
         ActiveCounter activeCounter = new ActiveCounter();
         for(int i=0;i<1000000;i++){
           activeCounter.increment();
           // System.out.println("Iter: "+ i + "Count: "+activeCounter.printCount());
         }
-        System.out.println("Active Counter Val: " + activeCounter.printCount());
+        activeCounter.Output();
     }
 }

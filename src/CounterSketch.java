@@ -41,5 +41,9 @@ public class CounterSketch extends Counter{
 
         return median;
     }
+
+    public void Output(Flow[] flows){
+        super.Output(flows, "CounterSketch.txt");
+    }
     
 }

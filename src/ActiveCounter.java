@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Random;
 
 public class ActiveCounter {
@@ -33,6 +35,17 @@ public class ActiveCounter {
 
     public int printCount(){
         return (int) ((numberPart&0xffff) * Math.pow(2, (exponentPart&0xffff)));
+    }
+
+    public void Output(){
+        String output = "Active Counter Val: " + printCount() + "\n";
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ActiveCounter.txt"));
+            writer.write(output);
+            writer.close();
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
     }
     
 }
