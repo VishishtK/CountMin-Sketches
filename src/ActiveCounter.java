@@ -25,7 +25,6 @@ public class ActiveCounter {
                 numberPart = numberPart >> 1;
                 numberPart = numberPart & 0xffff;
                 exponentPart ++;
-                // System.out.println(exponentPart+"----------------------------------------"+numberPart);
                 exponentPart = exponentPart & 0xffff;
             }
             

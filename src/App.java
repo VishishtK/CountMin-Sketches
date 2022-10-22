@@ -36,6 +36,10 @@ public class App {
         countMin.ConsumeFlows(flows);
         System.out.println("Avg Error in countMin: " + countMin.AvgError(flows));
 
+        CounterSketch counterSketch = new CounterSketch(k, w);
+        counterSketch.ConsumeFlows(flows);
+        System.out.println("Avg Error in counterSketch: " + counterSketch.AvgError(flows));
+
         ActiveCounter activeCounter = new ActiveCounter();
         for(int i=0;i<1000000;i++){
           activeCounter.increment();
