@@ -36,5 +36,6 @@ public class App {
         CountMin countMin = new CountMin(k, w);
         countMin.ConsumeFlows(flows);
         System.out.println(countMin.AvgError(flows));
+        // countMin.PrintCounterArray(0);
     }
 }

@@ -1,17 +1,8 @@
-public class CountMin {
+public class CountMin extends Counter{
 
-    int numberOfCounterArrays;
-    int numberOfCountersPerArray;
-    HashFunctions hashFunctions;
-
-    int[][] bitmaps;
-
-    public CountMin(int numberOfCounterArrays, int numberOfCountersPerArray){
-        this.numberOfCounterArrays = numberOfCounterArrays;
-        this.numberOfCountersPerArray = numberOfCountersPerArray;
-        this.hashFunctions = new HashFunctions(numberOfCounterArrays, numberOfCountersPerArray);
-        
-        bitmaps = new int[numberOfCounterArrays][numberOfCountersPerArray];
+    public CountMin(int numberOfCounterArrays, int numberOfCountersPerArray) {
+        super(numberOfCounterArrays, numberOfCountersPerArray);
+        //TODO Auto-generated constructor stub
     }
 
     void record(Flow flow){
@@ -27,24 +18,5 @@ public class CountMin {
         }
         return count;
     }
-
-    int error(Flow flow){
-        return Math.abs(query(flow.flowId)-flow.numberOfPackets);
-    }
-
-    public int AvgError(Flow[] flows){
-        int totalError = 0;
-        for(int i=0;i<flows.length;i++){
-            totalError += error(flows[i]);
-        }
-        return totalError/flows.length;
-    }
-
-    public void ConsumeFlows(Flow[] flows){
-        for(int i=0;i<flows.length;i++){
-            record(flows[i]);
-        }
-    }
-
 
 }
